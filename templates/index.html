@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Message of the Day</title>
+    <link rel="stylesheet" href="/static/css/index.css?q=121211115233"
+     type="text/css" media="screen" charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+        <img alt="cloud" src="static/symbol-cloud.png" style="width:128px;height:128px;">
+        <h2>de.NBI Cloud</h2>
+    </div>
+    <div class="banner">
+        <h1>Message of the Day</h1>
+    </div>
+
+    <div class="column">
+      <div class="onlinestatus">
+        <div class="box green">
+          <h2> openstack.cebitec.uni-bielefeld.de is {{ online }}</h2>
+        </div>
+      </div>
+      {% for article in news[::-1]  %}
+        <div class="card">
+          <h1>{{ article.title }}</h1>
+          <div>{{ article.text }}</div>
+          <h6>{{ article.author }} on {{ article.time }}    <tag>{{ article.tag}}</tag> </h6>
+        </div>
+        {% endfor %}
+      </div>
+
+    </body>
+</html>
