@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from flaskr.database import Base
+from flaskr.db import Base
 
 
 class News(Base):

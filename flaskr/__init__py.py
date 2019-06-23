@@ -1,5 +1,5 @@
 import os
-from flaskr.database import db_session, init_db
+from flaskr.db import db_session, init_db
 
 from flask import Flask
 
