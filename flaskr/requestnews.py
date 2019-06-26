@@ -27,9 +27,12 @@ def requestdb():
     if request.json['text'] != "":
         filters.update({"text": request.json['text']})
 
+    if request.json['facilityid'] != "":
+        filters.update({"facilityid": request.json['facilityid']})
+
     articles = find_article(filters)
     for article in articles:
         if article.time <= request.json['older']:
-            data.append({'title': article.title, 'author': article.author, 'time': article.time, 'tag': article.tag, 'text': article.text})
+            data.append({'title': article.title, 'author': article.author, 'time': article.time, 'tag': article.tag, 'text': article.text, 'facilityid': article.facilityid})
 
     return json.dumps(data)

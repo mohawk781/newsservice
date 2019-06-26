@@ -1,9 +1,10 @@
 import requests
 
 
-def auth(token, memberID):
+def auth(facility, token, memberid):
+
     hed = {'Authorization': 'Bearer ' + token}
-    data = {'member': memberID}
-    url = 'https://perun.elixir-czech.cz/oauth/rpc/json/authzResolver/isFacilityAdmin'
+    data = {'member': memberid}
+    url = 'https://perun.elixir-czech.cz/oauth/rpc/json/authzResolver/isFacilityAdmin(' + facility + ')'
     response = requests.post(url, json=data, headers=hed)
     return response.text

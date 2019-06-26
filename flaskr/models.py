@@ -8,12 +8,14 @@ class News(Base):
     title = Column(String(100))
     author = Column(String(50))
     time = Column(String(100))
-    text = Column(String(500))
+    text = Column(String(1000))
     tag = Column(String(50))
+    facilityid = Column(String(500))
 
-    def __init__(self, title, author, time, text, tag):
+    def __init__(self, title, author, time, text, tag, facilityid):
         self.title = title
         self.author = author
         self.time = time
         self.text = text
         self.tag = tag
+        self.facilityid = facilityid

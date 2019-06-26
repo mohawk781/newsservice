@@ -14,12 +14,27 @@ bp = Blueprint('save', __name__)
 def save():
     init_db()
     articlejson = request.json['news']
-    article = News(articlejson[0], articlejson[1], datetime.now().strftime('%Y-%m-%d %H:%M:%S'), articlejson[2], articlejson[3])
-    if auth(articlejson[4], articlejson[5]) == "1":
+    facilityids = facilityidstringtolist(articlejson[4])
+    article = News(articlejson[0], articlejson[1], datetime.now().strftime('%Y-%m-%d %H:%M:%S'), articlejson[2], articlejson[3], articlejson[4])
+
+    if checkifallfacilitiestrue(facilityids, articlejson[5], articlejson[6]):
         db_session.add(article)
         db_session.commit()
         log = "The Article: '{}' was added.".format(articlejson[0])
     else:
-        log = "You do not have the permission to post News"
+        log = "You do not have the permission to post to all of the facilities"
 
     return log
+
+
+def facilityidstringtolist(facilityidstring):
+    facilityidlist = facilityidstring.split(",")
+
+    return facilityidlist
+
+
+def checkifallfacilitiestrue(facilityids, token, memberid):
+    for facilityid in facilityids:
+        if auth(facilityid, token, memberid) == 0:
+            return False
+    return True
