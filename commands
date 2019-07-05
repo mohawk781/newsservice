@@ -18,3 +18,12 @@
       "older": "2019-06-26 00:22:00",
       "facilityid":""
 }
+
+curl -d '{
+      "tag": "",
+      "author": "",
+      "title": "",
+      "text": "",
+      "older": "2019-06-26 00:22:00",
+      "facilityid":""
+}' -H "Content-Type: application/json" -X POST 127.0.0.1:5000/request

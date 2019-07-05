@@ -37,6 +37,9 @@ def create_app(test_config=None):
     from flaskr import requestnews
     app.register_blueprint(requestnews.bp)
 
+    from flaskr import latestnews
+    app.register_blueprint(latestnews.bp)
+
     @app.teardown_appcontext
     def shutdown_session(exception=None):
         db_session.remove()

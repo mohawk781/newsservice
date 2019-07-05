@@ -29,7 +29,6 @@ def save():
 
 def facilityidstringtolist(facilityidstring):
     facilityidlist = facilityidstring.split(",")
-
     return facilityidlist
 
 
