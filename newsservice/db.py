@@ -10,6 +10,9 @@ Base = declarative_base()
 Base.query = db_session.query_property()
 
 def init_db():
+    """
+    initializes the sqlite database
+    """
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()

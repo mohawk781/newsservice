@@ -12,6 +12,11 @@ bp = Blueprint('save', __name__)
 
 @bp.route('/savenews', methods=['GET', 'POST'])
 def save():
+    """
+    This Method receives a News and a Authentication Token via JSON document. If the check with auth() was successful it
+    adds the news to the database. If not it tells the user that the news wasn't added.
+    :return: a status wether the News was added or not.
+    """
     init_db()
     articlejson = request.json['news']
     facilityids = facilityidstringtolist(articlejson[4])
@@ -27,19 +32,29 @@ def save():
     if not facilityidnolist:
         db_session.add(article)
         db_session.commit()
-        log = "The article: '{}' was added.".format(articlejson[0])
+        return "The article: '{}' was added.".format(articlejson[0])
     else:
-        log = 'The news was not posted, as you dont have the permission to post to these facilities: ' + ','.join(facilityidnolist)
-
-    return log
+        return 'The news was not posted, as you dont have the permission to post to these facilities: ' + ','.join(facilityidnolist)
 
 
 def facilityidstringtolist(facilityidstring):
+    """
+    This method receives a string with the facility id's and converts it to a list with 1 facility id at each index.
+    :param facilityidstring: string with all the facility id's
+    :return: a list containing the facility id's as strings.
+    """
     facilityidlist = facilityidstring.split(",")
     return facilityidlist
 
 
 def checkifallfacilitiestrue(facilityids, token):
+    """
+    This method calls the method auth() for each facility id.
+    If the User is not a admin at a facility it returns a list containing the facility id.
+    :param facilityids: facility id's which auth() should verify
+    :param token: Bearer Authentication Token of the User
+    :return: list containing the facility id's, where the user is no admin
+    """
     facilitylist = []
     for facilityid in facilityids:
         if auth(facilityid, token) != '1':

@@ -6,6 +6,14 @@ from flask import Flask
 
 
 def create_app(test_config=None):
+    """
+    This Method initializes the Flask Application and uses the default conifg file.
+    It imports the other Python Methods with Blueprints.
+    it was implemented with the help of the official flask tutorial: https://flask.palletsprojects.com/en/1.1.x/tutorial/
+    :param test_config:
+    :return: Returns the Flask Application
+    """
+
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     Bootstrap(app)

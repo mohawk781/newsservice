@@ -8,6 +8,12 @@ bp = Blueprint('request', __name__)
 
 @bp.route('/request', methods=['GET', 'POST'])
 def requestdb():
+    """
+    This Method receives filter values as a JSON and uses these to make queries at the database.
+    It creates a List with all entries of the database which match the filters.
+    Then it converts the list to a JSON document.
+    :return: JSON document containing all database entries which matches the filter values.
+    """
     data = []
     articles = News.query.all()
 
