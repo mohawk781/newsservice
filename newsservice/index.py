@@ -1,6 +1,6 @@
 from flask import render_template
 import http.client
-from flaskr.models import News
+from newsservice.models import News
 from flask import (Blueprint)
 
 bp = Blueprint('index', __name__)

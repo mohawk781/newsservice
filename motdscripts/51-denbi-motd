@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Ruft die Message of the Day auf. Die IP-Adresse und der Port muss im cURL Befehl entsprechend angepasst werden.
+
+printf "\n"
+curl -s 'http://127.0.0.1:5000/latestnews'
+printf "\n"

@@ -1,5 +1,5 @@
 import json
-from flaskr.models import News
+from newsservice.models import News
 
 from flask import (Blueprint, request)
 

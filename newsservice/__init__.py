@@ -1,5 +1,5 @@
 import os
-from flaskr.db import db_session, init_db
+from newsservice.db import db_session, init_db
 from flask_bootstrap import Bootstrap
 
 from flask import Flask
@@ -28,16 +28,16 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from flaskr import index
+    from newsservice import index
     app.register_blueprint(index.bp)
 
-    from flaskr import savenews
+    from newsservice import savenews
     app.register_blueprint(savenews.bp)
 
-    from flaskr import requestnews
+    from newsservice import requestnews
     app.register_blueprint(requestnews.bp)
 
-    from flaskr import latestnews
+    from newsservice import latestnews
     app.register_blueprint(latestnews.bp)
 
     @app.teardown_appcontext

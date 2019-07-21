@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Hilfreiche de.NBI Cloud Links
+
+printf "\n"
+printf " * de.NBI Cloud Quickstart: https://cloud.denbi.de/wiki/quickstart/ \n"
+printf " * de.NBI Cloud Wiki: https://cloud.denbi.de/wiki \n"
+printf " * de.NBI Cloud Portal: https://cloud.denbi.de/portal \n"
