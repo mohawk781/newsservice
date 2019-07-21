@@ -17,12 +17,13 @@ def save():
     facilityids = facilityidstringtolist(articlejson[4])
     article = News(articlejson[0], articlejson[1], datetime.now().strftime('%Y-%m-%d %H:%M:%S'), articlejson[2], articlejson[3], articlejson[4])
 
-    if checkifallfacilitiestrue(facilityids, articlejson[5], articlejson[6]):
+    facilityidnolist = checkifallfacilitiestrue(facilityids, articlejson[5])
+    if not facilityidnolist:
         db_session.add(article)
         db_session.commit()
         log = "The Article: '{}' was added.".format(articlejson[0])
     else:
-        log = "You do not have the permission to post to all of the facilities"
+        log = 'You dont have the Permission to post to these Facilitys: ' + ','.join(facilityidnolist)
 
     return log
 
@@ -32,8 +33,9 @@ def facilityidstringtolist(facilityidstring):
     return facilityidlist
 
 
-def checkifallfacilitiestrue(facilityids, token, memberid):
+def checkifallfacilitiestrue(facilityids, token):
+    facilitylist = []
     for facilityid in facilityids:
-        if auth(facilityid, token, memberid) == 0:
-            return False
-    return True
+        if auth(facilityid, token) != '1':
+            facilitylist.append(facilityid)
+    return facilitylist

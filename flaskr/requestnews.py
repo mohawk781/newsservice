@@ -6,33 +6,37 @@ from flask import (Blueprint, request)
 bp = Blueprint('request', __name__)
 
 
-def find_article(filters):
-    article = News.query.filter_by(**filters).all()
-    return article
-
-
 @bp.route('/request', methods=['GET', 'POST'])
 def requestdb():
     data = []
-    filters = {}
+    articles = News.query.all()
+
+    if request.json['id'] != "":
+        articles = [article for article in articles if str(article.id) == request.json['id']]
+
     if request.json['tag'] != "":
-        filters.update({"tag": request.json['tag']})
+        articles = [article for article in articles if article.tag == request.json['tag']]
 
     if request.json['author'] != "":
-        filters.update({"author": request.json['author']})
+        articles = [article for article in articles if request.json['author'] in article.author]
 
     if request.json['title'] != "":
-        filters.update({"title": request.json['title']})
+        articles = [article for article in articles if request.json['title'] in article.title]
 
     if request.json['text'] != "":
-        filters.update({"text": request.json['text']})
+        articles = [article for article in articles if request.json['text'] in article.text]
 
     if request.json['facilityid'] != "":
-        filters.update({"facilityid": request.json['facilityid']})
+        articles = [article for article in articles if request.json['facilityid'] in article.facilityid]
 
-    articles = find_article(filters)
+    if request.json['older'] != "":
+        articles = [article for article in articles if article.time <= request.json['older']]
+
+    if request.json['newer'] != "":
+        articles = [article for article in articles if article.time >= request.json['newer']]
+
     for article in articles:
-        if article.time <= request.json['older']:
-            data.append({'title': article.title, 'author': article.author, 'time': article.time, 'tag': article.tag, 'text': article.text, 'facilityid': article.facilityid})
+        data.insert(0, {'id': article.id, 'title': article.title, 'author': article.author, 'time': article.time, 'tag': article.tag,
+                        'text': article.text, 'facilityid': article.facilityid})
 
     return json.dumps(data)

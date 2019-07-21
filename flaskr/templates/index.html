@@ -22,11 +22,11 @@
           <h2> openstack.cebitec.uni-bielefeld.de is {{ online }}</h2>
         </div>
       </div>
-      {% for article in news[::-1]  %}
+      {% for article in news  %}
         <div class="card">
           <h1>{{ article.title }}</h1>
           <div>{{ article.text }}</div>
-          <h6>{{ article.author }} on {{ article.time }}    <tag>{{ article.tag}}</tag> </h6>
+          <h6>{{ article.author }} on {{ article.time }}    </h6>
         </div>
         {% endfor %}
       </div>

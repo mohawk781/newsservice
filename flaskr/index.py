@@ -22,5 +22,6 @@ def isonline():
 
 @bp.route('/')
 def render():
+
     online = isonline()
-    return render_template("index.html", news=News.query.all(), online=online)
+    return render_template("index.html", news=News.query.order_by(News.id.desc()).limit(30), online=online)
