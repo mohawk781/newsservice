@@ -42,8 +42,7 @@ You can publish a News by posting a JSON-Document at the REST-Interface /savenew
 The JSON-Document containing the News has to be in a particular format:
 
 ```javascript
-{     
-"news" : [
+{"news" : [
 	"Title",
 	"Author",
 	"Text of the News",
@@ -54,7 +53,7 @@ The JSON-Document containing the News has to be in a particular format:
 }
 ```
 
-An example cURL Command coud look like this:
+An example cURL call could look like this:
 <pre> $ curl -X POST -H "Content-Type: application/json" -d  @.../news.json http://localhost:5000/savenews </pre>
 
 An example news.json could look like this:
@@ -94,7 +93,7 @@ The JSON-Document containing the filters has to be in a particular format:
 ```
 
 
-An example cURL Command coud look like this:
+An example cURL call could look like this:
 <pre> $ curl -X POST -H "Content-Type: application/json" -d  @.../filter.json http://localhost:5000/requestnews </pre>
 
 An example filter.json could look like this:
@@ -115,7 +114,19 @@ empty filters are going to be ignored during the filtering
 
 ### Requesting the MOTD of the Automated Notification Service
 
+In order to request the MOTD, that is the last published News to the Automated Notification Service, you simply need to send a GET Request at /latestnews.
+The Automated Notification Service returns already formatted String. Not a JSON-Document.
+
+An example cURL call could look like this:
+<pre> curl -s 'http://127.0.0.1:5000/latestnews' </pre>
 
 
 ### Implement the Custom Message of the Day at your Ubuntu/Debian Distribution
+
+The Automated Notification Service contains custom de.NBI MOTD shell-scripts. In order to install them you need to copy the [scripts](https://github.com/prichter327/newsservice/tree/master/motdscripts) into the following directory of your Ubuntu/Debian system:
+<pre>/etc/update-motd.d</pre>
+You need Root-Permission to perfom this action. Via chmod make sure that the scripts are executable!
+In order to display you may need to edit the **IP-ADRESS** and **PORT** inside the script *51-denbi-motd* in line 6:
+<pre>curl -s 'http://'IP-ADRESS':'PORT'/latestnews'</pre>
+In case you want to keep a slim log-in experience it is recommended to remove the scripts *10-help-text* and *50-motd-news* of the directory.
 
