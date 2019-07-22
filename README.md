@@ -48,7 +48,7 @@ The JSON-Document containing the News has to be in a particular format:
 	"Text of the News",
 	"Tag",
 	"FacilityID1,FacilityID2,...",
-	"PERUN Log In Token",
+	"PERUN Log In Token"
 	]
 }
 ```
@@ -78,7 +78,7 @@ An example news.json could look like this:
 	"The Update v1.4 was deployed.",
 	"Update",
 	"123,124",
-	"edAf6FK8wIGkBn1u8hE_9zVK4_oOTCeMd8axTpA",
+	"edAf6FK8wIGkBn1u8hE_9zVK4_oOTCeMd8axTpA"
 	]
 }
 ```
