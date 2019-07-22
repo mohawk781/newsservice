@@ -6,7 +6,7 @@ from flask import (Blueprint, request)
 bp = Blueprint('request', __name__)
 
 
-@bp.route('/request', methods=['GET', 'POST'])
+@bp.route('/requestnews', methods=['GET', 'POST'])
 def requestdb():
     """
     This Method receives filter values as a JSON and uses these to make queries at the database.
