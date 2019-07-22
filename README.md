@@ -53,6 +53,19 @@ The JSON-Document containing the News has to be in a particular format:
 }
 ```
 
+each string has a max length defined by the database, so make sure your inputs match the following requierments:
+
+| object  	 | max. length|
+| ---------------|:----------:|
+| title     	 | 200		|
+| author   	 | 100    	|
+| time 		 | 100    	|
+| text   	 | 1500	 	|
+| tag     	 | 50     	|
+| facility id's  | 2000   	|
+
+
+
 An example cURL call could look like this:
 <pre> $ curl -X POST -H "Content-Type: application/json" -d  @.../news.json http://localhost:5000/savenews </pre>
 
