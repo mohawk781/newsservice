@@ -7,7 +7,7 @@ Once you activated the virtual environment you can install all necassary libarys
 
 <pre>$ pip install -r requirements.txt</pre>
 
-Afterwards you need to deactivate and re-activate the virtual environment, so changes take place.
+Afterwards you maybe need to deactivate and re-activate the virtual environment, for changes to take place.
 
 You need to point out to flask, which application you wanna run:
 
